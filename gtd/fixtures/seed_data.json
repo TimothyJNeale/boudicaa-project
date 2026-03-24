@@ -1,0 +1,21 @@
+[
+  {"model": "gtd.status", "pk": 1, "fields": {"name": "PROPOSED", "color": "info", "activity_level": 1, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 2, "fields": {"name": "SOMEDAY", "color": "secondary", "activity_level": 2, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 3, "fields": {"name": "LONG", "color": "secondary", "activity_level": 3, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 4, "fields": {"name": "WAITING", "color": "warning", "activity_level": 4, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 5, "fields": {"name": "NEXT", "color": "primary", "activity_level": 5, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 6, "fields": {"name": "IN ACTION", "color": "success", "activity_level": 6, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 7, "fields": {"name": "BACK BURNER", "color": "info", "activity_level": 7, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 8, "fields": {"name": "PAUSED", "color": "warning", "activity_level": 8, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 9, "fields": {"name": "SUSPENDED", "color": "danger", "activity_level": 9, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 10, "fields": {"name": "COMPLETED", "color": "dark", "activity_level": 10, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.status", "pk": 11, "fields": {"name": "ABANDONED", "color": "danger", "activity_level": 11, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.priority", "pk": 1, "fields": {"name": "Critical", "rank": 1, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.priority", "pk": 2, "fields": {"name": "High", "rank": 2, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.priority", "pk": 3, "fields": {"name": "Medium", "rank": 3, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.priority", "pk": 4, "fields": {"name": "Low", "rank": 4, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.priority", "pk": 5, "fields": {"name": "Someday", "rank": 5, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.domain", "pk": 1, "fields": {"name": "Personal", "color": "primary", "user": null, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.area", "pk": 1, "fields": {"name": "General", "domain": 1, "user": null, "created_at": "2026-03-20T00:00:00Z"}},
+  {"model": "gtd.context", "pk": 1, "fields": {"name": "Anywhere", "user": null, "created_at": "2026-03-20T00:00:00Z"}}
+]

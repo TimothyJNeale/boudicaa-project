@@ -1,0 +1,21 @@
+<!-- Report navigation tabs -->
+<ul class="nav nav-tabs mb-3">
+  <li class="nav-item">
+    <a class="nav-link {% if 'daily' in request.path and 'monthly' not in request.path %}active{% endif %}"
+       href="{% url 'report_daily' %}">Daily</a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link {% if 'weekly' in request.path %}active{% endif %}"
+       href="{% url 'report_weekly' %}">Weekly</a>
+  </li>
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle {% if 'monthly' in request.path %}active{% endif %}"
+       data-bs-toggle="dropdown" href="#">Monthly</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="{% url 'report_monthly_by_day' %}">By Day</a></li>
+      <li><a class="dropdown-item" href="{% url 'report_monthly_by_project' %}">By Project</a></li>
+      <li><a class="dropdown-item" href="{% url 'report_monthly_by_area' %}">By Area</a></li>
+      <li><a class="dropdown-item" href="{% url 'report_monthly_by_action' %}">By Action</a></li>
+    </ul>
+  </li>
+</ul>

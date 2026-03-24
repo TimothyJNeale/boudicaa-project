@@ -1,0 +1,95 @@
+{% load static %}
+<!-- SDS Appendix A — Sidebar with 4-mode navigation -->
+<aside class="sidebar">
+  <!-- Sidebar Header -->
+  <div class="sidebar-header">
+    <a href="{% url 'today' %}" class="sidebar-logo">
+      <img src="{% static 'gtd/img/logo.webp' %}" alt="Boudicaa">
+      <span class="sidebar-logo-text">
+        <span class="sidebar-logo-name">Boudicaa</span>
+        <span class="sidebar-logo-tagline">v{{ app_version }}</span>
+      </span>
+    </a>
+    <button class="sidebar-close">
+      <i class="bi bi-x-lg"></i>
+    </button>
+  </div>
+
+  <!-- Sidebar Navigation -->
+  <nav class="sidebar-nav">
+    <ul class="nav-menu">
+      <!-- Inbox -->
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'inbox_list' or 'inbox' in request.path %}active{% endif %}"
+           href="{% url 'inbox_list' %}" data-tooltip="Inbox">
+          <i class="bi bi-inbox"></i>
+          <span>Inbox</span>
+          {% if inbox_count %}
+          <span class="badge bg-primary rounded-pill ms-auto">{{ inbox_count }}</span>
+          {% endif %}
+        </a>
+      </li>
+
+      <!-- Today -->
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'today' or 'today' in request.path %}active{% endif %}"
+           href="{% url 'today' %}" data-tooltip="Today">
+          <i class="bi bi-calendar-check"></i>
+          <span>Today</span>
+        </a>
+      </li>
+
+      <!-- Projects -->
+      <li class="nav-item">
+        <a class="nav-link {% if 'projects' in request.path %}active{% endif %}"
+           href="{% url 'project_list' %}" data-tooltip="Projects">
+          <i class="bi bi-kanban"></i>
+          <span>Projects</span>
+        </a>
+      </li>
+
+      <!-- Time -->
+      <li class="nav-item has-submenu {% if 'time' in request.path %}open{% endif %}">
+        <a class="nav-link" href="#" aria-expanded="{% if 'time' in request.path %}true{% else %}false{% endif %}" data-tooltip="Time">
+          <i class="bi bi-clock-history"></i>
+          <span>Time</span>
+          <i class="bi bi-chevron-down nav-arrow"></i>
+        </a>
+        <ul class="nav-submenu {% if 'time' in request.path %}show{% endif %}">
+          <li><a class="nav-link {% if request.resolver_match.url_name == 'time_daily' %}active{% endif %}" href="{% url 'time_daily' %}">Daily Timesheet</a></li>
+          <li><a class="nav-link {% if request.resolver_match.url_name == 'worksession_list' %}active{% endif %}" href="{% url 'worksession_list' %}">Timecards</a></li>
+          <li><a class="nav-link {% if 'reports' in request.path %}active{% endif %}" href="{% url 'report_daily' %}">Reports</a></li>
+        </ul>
+      </li>
+
+      <!-- Divider -->
+      <li class="nav-heading">Manage</li>
+
+      <!-- Review -->
+      <li class="nav-item">
+        <a class="nav-link {% if request.resolver_match.url_name == 'review' %}active{% endif %}"
+           href="{% url 'review' %}" data-tooltip="Weekly Review">
+          <i class="bi bi-clipboard-check"></i>
+          <span>Weekly Review</span>
+          {% if review_nudge %}
+          <span class="badge bg-warning text-dark rounded-pill ms-auto">Due</span>
+          {% endif %}
+        </a>
+      </li>
+
+      <!-- Configuration -->
+      <li class="nav-item has-submenu {% if 'config' in request.path %}open{% endif %}">
+        <a class="nav-link" href="#" aria-expanded="{% if 'config' in request.path %}true{% else %}false{% endif %}" data-tooltip="Configuration">
+          <i class="bi bi-gear"></i>
+          <span>Configuration</span>
+          <i class="bi bi-chevron-down nav-arrow"></i>
+        </a>
+        <ul class="nav-submenu {% if 'config' in request.path %}show{% endif %}">
+          <li><a class="nav-link {% if request.resolver_match.url_name == 'domain_list' %}active{% endif %}" href="{% url 'domain_list' %}">Domains</a></li>
+          <li><a class="nav-link {% if request.resolver_match.url_name == 'area_list' %}active{% endif %}" href="{% url 'area_list' %}">Areas</a></li>
+          <li><a class="nav-link {% if request.resolver_match.url_name == 'context_list' %}active{% endif %}" href="{% url 'context_list' %}">Contexts</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+</aside>

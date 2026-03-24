@@ -1,0 +1,30 @@
+<!-- Project side panel content (board view) -->
+<h5>{{ project.name }}</h5>
+<span class="badge bg-{{ project.status.color }} mb-2">{{ project.status.name }}</span>
+
+{% if project.description %}
+<p class="text-muted">{{ project.description }}</p>
+{% endif %}
+
+<dl class="row mb-3">
+  <dt class="col-sm-4">Area</dt>
+  <dd class="col-sm-8">{{ project.area }}</dd>
+  <dt class="col-sm-4">Open Tasks</dt>
+  <dd class="col-sm-8">{{ project.incomplete_action_count }}</dd>
+  <dt class="col-sm-4">Completed</dt>
+  <dd class="col-sm-8">{{ project.completed_action_count }}</dd>
+  <dt class="col-sm-4">Created</dt>
+  <dd class="col-sm-8">{{ project.created_at|date:"d M Y" }}</dd>
+</dl>
+
+{% if project.notes %}
+<div class="mb-3">
+  <strong>Notes</strong>
+  <p class="mt-1">{{ project.notes|linebreaksbr|truncatewords:50 }}</p>
+</div>
+{% endif %}
+
+<div class="d-flex gap-2">
+  <a href="{% url 'project_detail' project.pk %}" class="btn btn-sm btn-primary">Open</a>
+  <a href="{% url 'project_update' project.pk %}" class="btn btn-sm btn-outline-primary">Edit</a>
+</div>

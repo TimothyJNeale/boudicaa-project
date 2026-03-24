@@ -1,0 +1,79 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>{% block title %}Boudicaa{% endblock %}</title>
+  <meta name="description" content="Boudicaa — Personal Productivity">
+
+  <!-- Favicons -->
+  <link href="{% static 'gtd/img/favicon.png' %}" rel="icon">
+  <link href="{% static 'gtd/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+
+  <!-- Google Fonts - Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+  <!-- Vendor CSS Files (CDN only — SDS 1.6) -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.0/dist/style.min.css" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.css" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link href="{% static 'gtd/css/main.css' %}" rel="stylesheet">
+
+  <!-- Boudicaa Custom CSS -->
+  <link href="{% static 'gtd/css/gtd-custom.css' %}" rel="stylesheet">
+
+  {% block extra_css %}{% endblock %}
+</head>
+
+<body>
+  <!-- Header -->
+  {% include "gtd/_header.html" %}
+
+  <!-- Sidebar -->
+  {% include "gtd/_sidebar.html" %}
+
+  <!-- Main Content -->
+  <main class="main">
+    <div class="main-content">
+      {% include "gtd/_messages.html" %}
+      {% block content %}{% endblock %}
+    </div>
+
+    <!-- Footer -->
+    {% include "gtd/_footer.html" %}
+  </main>
+
+  <!-- Back to Top -->
+  <a href="#" class="back-to-top">
+    <i class="bi bi-arrow-up"></i>
+  </a>
+
+  <!-- Vendor JS Files (CDN only — SDS 1.6) -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/simple-datatables@9.0.0/dist/simple-datatables.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/flatpickr@4.6.13/dist/flatpickr.min.js"></script>
+
+  <!-- Template Main JS Files -->
+  <script src="{% static 'gtd/js/theme.js' %}"></script>
+  <script src="{% static 'gtd/js/main.js' %}"></script>
+
+  <!-- htmx -->
+  <script src="https://unpkg.com/htmx.org@2.0.4"></script>
+  <script>document.body.addEventListener('htmx:configRequest', function(e) {
+    e.detail.headers['X-CSRFToken'] = '{{ csrf_token }}';
+  });</script>
+
+  <!-- Alpine.js -->
+  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
+
+  {% block extra_js %}{% endblock %}
+</body>
+
+</html>

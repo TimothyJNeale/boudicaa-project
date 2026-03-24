@@ -1,0 +1,126 @@
+{% load static %}
+<!-- SDS Appendix A — Header partial adapted from EasyAdmin -->
+<header class="header">
+  <!-- Header Left -->
+  <div class="header-left">
+    <a href="{% url 'today' %}" class="header-logo">
+      <img src="{% static 'gtd/img/logo.webp' %}" alt="Boudicaa">
+      <span>Boudicaa</span>
+    </a>
+    <button class="sidebar-toggle" title="Toggle Sidebar">
+      <i class="bi bi-list"></i>
+    </button>
+  </div>
+
+  <!-- Header Right -->
+  <div class="header-right">
+    <div class="header-actions-desktop">
+      <!-- Quick Capture (Inbox) -->
+      <div class="header-action" x-data="{ open: false }">
+        <button @click="open = !open" class="btn btn-sm btn-outline-primary" title="Quick Capture">
+          <i class="bi bi-plus-lg"></i> Capture
+        </button>
+        <div x-show="open" @click.away="open = false" x-cloak
+             class="position-absolute end-0 mt-2 p-3 bg-white border rounded shadow-sm" style="width: 320px; z-index: 1050;">
+          <form hx-post="{% url 'quick_capture' %}" hx-swap="none" @htmx:after-request="if(event.detail.successful) { $refs.input.value = ''; open = false; }">
+            {% csrf_token %}
+            <div class="mb-2">
+              <input type="text" name="item" x-ref="input" class="form-control form-control-sm" placeholder="What's on your mind?" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-sm w-100">Add to Inbox</button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Active Timer -->
+      <div id="running-timer"
+           {% if active_session %}
+           hx-get="{% url 'stop_work_session' %}" hx-trigger="none"
+           {% endif %}>
+        {% include "gtd/partials/running_timer.html" %}
+      </div>
+
+      <!-- Inbox Badge -->
+      <a href="{% url 'inbox_list' %}" class="header-action" title="Inbox">
+        <i class="bi bi-inbox"></i>
+        {% if inbox_count %}<span class="badge">{{ inbox_count }}</span>{% endif %}
+      </a>
+
+      <!-- Theme Toggle -->
+      <button class="header-action theme-toggle" title="Toggle Theme">
+        <i class="bi bi-moon icon-dark"></i>
+        <i class="bi bi-sun icon-light"></i>
+      </button>
+
+      <!-- User Dropdown -->
+      <div class="header-action dropdown user-dropdown">
+        <button class="dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+          <i class="bi bi-person-circle" style="font-size: 1.4rem;"></i>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-end">
+          <li class="dropdown-header">
+            <div class="user-info">
+              <h6>{{ request.user.get_full_name|default:request.user.username }}</h6>
+              <span>{{ request.user.email }}</span>
+            </div>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="{% url 'profile' %}">
+              <i class="bi bi-person"></i> Profile
+            </a>
+          </li>
+          <li>
+            <a class="dropdown-item" href="{% url 'review' %}">
+              <i class="bi bi-clipboard-check"></i> Weekly Review
+              {% if review_nudge %}<span class="badge bg-warning text-dark ms-1">Due</span>{% endif %}
+            </a>
+          </li>
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <form method="post" action="{% url 'logoutuser' %}">
+              {% csrf_token %}
+              <button type="submit" class="dropdown-item dropdown-item-danger">
+                <i class="bi bi-box-arrow-right"></i> Sign Out
+              </button>
+            </form>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Mobile Actions -->
+    <div class="header-actions-mobile">
+      <button class="header-action mobile-menu-toggle" title="More">
+        <i class="bi bi-three-dots-vertical"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<!-- Mobile Header Menu -->
+<div class="mobile-header-menu">
+  <div class="mobile-header-menu-content">
+    <a href="{% url 'inbox_list' %}" class="mobile-menu-item">
+      <i class="bi bi-inbox"></i>
+      {% if inbox_count %}<span class="badge">{{ inbox_count }}</span>{% endif %}
+      <span class="mobile-menu-label">Inbox</span>
+    </a>
+    <button class="mobile-menu-item theme-toggle" title="Toggle Theme">
+      <i class="bi bi-moon icon-dark"></i>
+      <i class="bi bi-sun icon-light"></i>
+      <span class="mobile-menu-label">Theme</span>
+    </button>
+    <a href="{% url 'profile' %}" class="mobile-menu-item">
+      <i class="bi bi-person"></i>
+      <span class="mobile-menu-label">Profile</span>
+    </a>
+    <form method="post" action="{% url 'logoutuser' %}" class="d-inline">
+      {% csrf_token %}
+      <button type="submit" class="mobile-menu-item mobile-menu-item-danger">
+        <i class="bi bi-box-arrow-right"></i>
+        <span class="mobile-menu-label">Sign Out</span>
+      </button>
+    </form>
+  </div>
+</div>

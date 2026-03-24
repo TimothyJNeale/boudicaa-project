@@ -1,0 +1,26 @@
+{% extends "gtd/base.html" %}
+{% block title %}Processed Item — Boudicaa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1 class="page-title">Processed Item</h1>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <dl class="row mb-0">
+      <dt class="col-sm-3">Content</dt>
+      <dd class="col-sm-9">{{ object.item }}</dd>
+      <dt class="col-sm-3">Outcome</dt>
+      <dd class="col-sm-9">{{ object.processing_note|default:"—" }}</dd>
+      <dt class="col-sm-3">Captured</dt>
+      <dd class="col-sm-9">{{ object.created_at }}</dd>
+      <dt class="col-sm-3">Processed</dt>
+      <dd class="col-sm-9">{{ object.processed_at }}</dd>
+    </dl>
+  </div>
+</div>
+<a href="{% url 'inbox_processed' %}" class="btn btn-outline-secondary mt-3">
+  <i class="bi bi-arrow-left me-1"></i> Back
+</a>
+{% endblock %}

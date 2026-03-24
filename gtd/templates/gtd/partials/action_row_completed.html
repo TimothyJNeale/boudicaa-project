@@ -1,0 +1,14 @@
+<!-- Completed action row with undo option -->
+<div class="d-flex align-items-center py-2 px-3 border-bottom bg-light action-row" id="action-{{ action.pk }}">
+  <i class="bi bi-check-circle-fill text-success me-2"></i>
+  <div class="flex-grow-1">
+    <del class="text-muted">{{ action.name }}</del>
+    <small class="text-muted ms-2">{{ action.project.name }}</small>
+  </div>
+  <button class="btn btn-sm btn-outline-secondary"
+          hx-post="{% url 'uncomplete_action' action.pk %}"
+          hx-target="#action-{{ action.pk }}" hx-swap="outerHTML"
+          title="Undo">
+    <i class="bi bi-arrow-counterclockwise"></i> Undo
+  </button>
+</div>

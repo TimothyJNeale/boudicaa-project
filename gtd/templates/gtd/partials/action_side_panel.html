@@ -1,0 +1,56 @@
+<!-- Action detail side panel content -->
+<h5>{{ action.name }}</h5>
+<dl class="row mb-3">
+  <dt class="col-sm-4">Project</dt>
+  <dd class="col-sm-8">{{ action.project.name }}</dd>
+  <dt class="col-sm-4">Area</dt>
+  <dd class="col-sm-8">{{ action.area }}</dd>
+  <dt class="col-sm-4">Priority</dt>
+  <dd class="col-sm-8">{{ action.priority.name }}</dd>
+  {% if action.context %}
+  <dt class="col-sm-4">Context</dt>
+  <dd class="col-sm-8">{{ action.context.name }}</dd>
+  {% endif %}
+  {% if action.scheduled_start %}
+  <dt class="col-sm-4">Start</dt>
+  <dd class="col-sm-8">{{ action.scheduled_start }}</dd>
+  {% endif %}
+  {% if action.scheduled_end %}
+  <dt class="col-sm-4">Due</dt>
+  <dd class="col-sm-8">{{ action.scheduled_end }}</dd>
+  {% endif %}
+  {% if action.time_budgeted %}
+  <dt class="col-sm-4">Budget</dt>
+  <dd class="col-sm-8">{{ action.time_budgeted }} min</dd>
+  {% endif %}
+  <dt class="col-sm-4">Time Worked</dt>
+  <dd class="col-sm-8">{{ action.total_time_worked }}</dd>
+</dl>
+
+{% if action.notes %}
+<div class="mb-3">
+  <strong>Notes</strong>
+  <p class="mt-1">{{ action.notes|linebreaksbr }}</p>
+</div>
+{% endif %}
+
+{% if action.is_recurring %}
+<div class="mb-3">
+  <span class="badge bg-info">Recurring</span>
+  <small class="text-muted ms-1">{{ action.recurrence_rule }}</small>
+</div>
+{% endif %}
+
+{% if form %}
+<hr>
+<form hx-post="{% url 'update_action' action.pk %}" hx-target="#side-panel-body" hx-swap="innerHTML">
+  {% csrf_token %}
+  {% for field in form %}
+  <div class="mb-2">
+    <label for="{{ field.id_for_label }}" class="form-label" style="font-size: 0.85rem;">{{ field.label }}</label>
+    {{ field }}
+  </div>
+  {% endfor %}
+  <button type="submit" class="btn btn-primary btn-sm">Save</button>
+</form>
+{% endif %}

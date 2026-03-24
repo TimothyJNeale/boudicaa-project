@@ -1,0 +1,43 @@
+/* Boudicaa custom styles — loaded after EasyAdmin theme. SDS 1.6.4 */
+
+/* Side panel overlay */
+.side-panel {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  z-index: 1060;
+  transition: right 0.3s ease;
+}
+.side-panel.show {
+  right: 0;
+}
+.side-panel-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.3);
+  z-index: -1;
+  display: none;
+}
+.side-panel.show .side-panel-overlay {
+  display: block;
+}
+.side-panel-content {
+  height: 100vh;
+  overflow-y: auto;
+  border-radius: 0;
+}
+
+/* Action row hover */
+.action-row:hover {
+  background-color: var(--bs-light);
+}
+
+/* Alpine.js x-cloak */
+[x-cloak] {
+  display: none;
+}

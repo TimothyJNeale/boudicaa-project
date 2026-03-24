@@ -1,0 +1,43 @@
+{% extends "gtd/base.html" %}
+{% block title %}Weekly Report — Boudicaa{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const data = {{ chart_data|safe }};
+  if (data.labels.length > 0) {
+    new Chart(document.getElementById('weeklyChart'), {
+      type: 'bar',
+      data: {
+        labels: data.labels,
+        datasets: [{ label: 'Minutes', data: data.data, backgroundColor: '#0d6efd' }]
+      },
+      options: { responsive: true, scales: { y: { beginAtZero: true }}}
+    });
+  }
+});
+</script>
+{% endblock %}
+
+{% block content %}
+{% include "gtd/time/reports/_navigation.html" %}
+
+<div class="page-header">
+  <h1 class="page-title">Weekly Report</h1>
+  <p class="text-muted mb-0">Week of {{ start_of_week|date:"j F Y" }}</p>
+</div>
+
+<div class="card">
+  <div class="card-body">
+    <canvas id="weeklyChart"></canvas>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between mt-3">
+  <a href="{% url 'report_weekly_offset' week_offset|add:1 %}" class="btn btn-outline-secondary btn-sm">&laquo; Previous Week</a>
+  {% if week_offset > 0 %}
+  <a href="{% url 'report_weekly_offset' week_offset|add:-1 %}" class="btn btn-outline-secondary btn-sm">Next Week &raquo;</a>
+  {% endif %}
+</div>
+{% endblock %}

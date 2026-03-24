@@ -1,0 +1,16 @@
+<!-- Quick add action form for project page -->
+<div class="card">
+  <div class="card-body">
+    <form method="post">
+      {% csrf_token %}
+      {% for field in form %}
+      <div class="mb-2">
+        <label for="{{ field.id_for_label }}" class="form-label" style="font-size: 0.85rem;">{{ field.label }}</label>
+        {{ field }}
+        {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors.0 }}</div>{% endif %}
+      </div>
+      {% endfor %}
+      <button type="submit" class="btn btn-primary btn-sm">Add Action</button>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,8 @@
+<!-- Action list within project detail -->
+{% for action in object_list %}
+{% include "gtd/partials/action_row.html" %}
+{% empty %}
+<div class="text-center py-3 text-muted">
+  <small>No actions yet. Add one to get started.</small>
+</div>
+{% endfor %}

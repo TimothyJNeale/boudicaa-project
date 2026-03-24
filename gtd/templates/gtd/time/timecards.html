@@ -1,0 +1,47 @@
+{% extends "gtd/base.html" %}
+{% block title %}Timecards — Boudicaa{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+  <div>
+    <h1 class="page-title">Timecards</h1>
+  </div>
+  <a href="{% url 'worksession_create' %}" class="btn btn-primary btn-sm">
+    <i class="bi bi-plus-lg me-1"></i> Log Time
+  </a>
+</div>
+
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Action</th>
+          <th>Project</th>
+          <th>Date</th>
+          <th>Duration</th>
+          <th class="text-end">Edit</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for session in object_list %}
+        <tr>
+          <td>{{ session.action.name }}</td>
+          <td>{{ session.action.project.name }}</td>
+          <td>{{ session.started_at|date:"d M Y H:i" }}</td>
+          <td>{{ session.elapsed_time_formatted }}</td>
+          <td class="text-end">
+            <a href="{% url 'worksession_update' session.pk %}" class="btn btn-sm btn-outline-primary">
+              <i class="bi bi-pencil"></i>
+            </a>
+          </td>
+        </tr>
+        {% empty %}
+        <tr><td colspan="5" class="text-center py-4 text-muted">No timecards.</td></tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% include "gtd/_pagination.html" %}
+{% endblock %}

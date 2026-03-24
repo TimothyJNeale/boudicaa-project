@@ -1,0 +1,16 @@
+<!-- Unscheduled standalone tasks panel -->
+<div class="card mt-3">
+  <div class="card-header d-flex justify-content-between align-items-center">
+    <h6 class="mb-0">Unscheduled Tasks</h6>
+    <button type="button" class="btn-close" onclick="this.closest('.card').remove()"></button>
+  </div>
+  <div class="card-body p-0">
+    {% for action in actions %}
+    {% include "gtd/partials/action_row.html" %}
+    {% empty %}
+    <div class="text-center py-3 text-muted">
+      <small>No unscheduled tasks</small>
+    </div>
+    {% endfor %}
+  </div>
+</div>

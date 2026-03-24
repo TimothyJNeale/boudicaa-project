@@ -1,0 +1,11 @@
+<!-- Multiple day sections for infinite scroll -->
+{% for day in days %}
+{% include "gtd/partials/today_day_section.html" %}
+{% endfor %}
+
+{% if days %}
+<!-- Next scroll sentinel -->
+<div hx-get="{% url 'today_more' next_scroll_date|date:'Y-m-d' %}"
+     hx-trigger="revealed" hx-target="#day-sections" hx-swap="beforeend">
+</div>
+{% endif %}

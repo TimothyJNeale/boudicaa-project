@@ -1,0 +1,36 @@
+<!-- Single action row — used in Today view and project detail -->
+<div class="d-flex align-items-center py-2 px-3 border-bottom action-row" id="action-{{ action.pk }}">
+  <form class="me-2" style="display: inline;">
+    <button type="button" class="btn btn-sm btn-outline-success rounded-circle"
+            hx-post="{% url 'complete_action' action.pk %}"
+            hx-target="#action-{{ action.pk }}" hx-swap="outerHTML"
+            title="Complete">
+      <i class="bi bi-check-lg"></i>
+    </button>
+  </form>
+  <div class="flex-grow-1"
+       hx-get="{% url 'action_side_panel' action.pk %}" hx-target="#side-panel-body"
+       hx-swap="innerHTML" @htmx:after-request="$dispatch('open-panel')"
+       style="cursor: pointer;">
+    <span class="{% if action.is_overdue %}text-danger fw-bold{% endif %}">{{ action.name }}</span>
+    <small class="text-muted ms-2">{{ action.project.name }}</small>
+  </div>
+  <div class="d-flex align-items-center gap-2">
+    {% if action.scheduled_start %}
+    <small class="text-muted">{{ action.scheduled_start|time:"H:i" }}</small>
+    {% endif %}
+    <span class="badge bg-{{ action.priority.name|lower|default:'secondary' }}"
+          style="font-size: 0.7rem;">{{ action.priority.name }}</span>
+    {% if action.is_waiting %}
+    <span class="badge bg-warning text-dark" style="font-size: 0.7rem;">Waiting</span>
+    {% endif %}
+    {% if not active_session or active_session.action.pk != action.pk %}
+    <button class="btn btn-sm btn-outline-primary"
+            hx-post="{% url 'start_work_session' action.pk %}"
+            hx-target="#running-timer" hx-swap="innerHTML"
+            title="Start Timer">
+      <i class="bi bi-play-fill"></i>
+    </button>
+    {% endif %}
+  </div>
+</div>

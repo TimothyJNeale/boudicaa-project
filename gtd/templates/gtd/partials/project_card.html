@@ -1,0 +1,16 @@
+<!-- Project Kanban card -->
+<div class="card mb-2 shadow-sm project-card"
+     hx-get="{% url 'project_side_panel' project.pk %}" hx-target="#side-panel-body"
+     hx-swap="innerHTML" @htmx:after-request="$dispatch('open-panel')"
+     style="cursor: pointer;">
+  <div class="card-body p-2">
+    <h6 class="card-title mb-1" style="font-size: 0.85rem;">{{ project.name }}</h6>
+    {% if project.description %}
+    <p class="card-text text-muted mb-1" style="font-size: 0.75rem;">{{ project.description|truncatewords:10 }}</p>
+    {% endif %}
+    <div class="d-flex justify-content-between align-items-center">
+      <span class="badge bg-{{ project.status.color }}">{{ project.status.name }}</span>
+      <small class="text-muted">{{ project.incomplete_action_count }} tasks</small>
+    </div>
+  </div>
+</div>

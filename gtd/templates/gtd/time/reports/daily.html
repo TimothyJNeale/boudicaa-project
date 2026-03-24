@@ -1,0 +1,70 @@
+{% extends "gtd/base.html" %}
+{% block title %}Daily Report — Boudicaa{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const data = {{ chart_data|safe }};
+  if (data.labels.length > 0) {
+    new Chart(document.getElementById('dailyChart'), {
+      type: 'doughnut',
+      data: {
+        labels: data.labels,
+        datasets: [{
+          data: data.data,
+          backgroundColor: data.colors
+        }]
+      },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' }}}
+    });
+  }
+});
+</script>
+{% endblock %}
+
+{% block content %}
+{% include "gtd/time/reports/_navigation.html" %}
+
+<div class="page-header">
+  <h1 class="page-title">Daily Report</h1>
+  <p class="text-muted mb-0">{{ target_date|date:"l, j F Y" }}</p>
+</div>
+
+<div class="row g-3">
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <canvas id="dailyChart"></canvas>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body p-0">
+        <table class="table table-hover mb-0">
+          <thead><tr><th>Action</th><th>Project</th><th>Time</th></tr></thead>
+          <tbody>
+            {% for session in sessions %}
+            <tr>
+              <td>{{ session.action.name }}</td>
+              <td>{{ session.action.project.name }}</td>
+              <td>{{ session.elapsed_time_formatted }}</td>
+            </tr>
+            {% empty %}
+            <tr><td colspan="3" class="text-center py-3 text-muted">No sessions</td></tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="d-flex justify-content-between mt-3">
+  <a href="{% url 'report_daily_offset' day_offset|add:1 %}" class="btn btn-outline-secondary btn-sm">&laquo; Previous Day</a>
+  {% if day_offset > 0 %}
+  <a href="{% url 'report_daily_offset' day_offset|add:-1 %}" class="btn btn-outline-secondary btn-sm">Next Day &raquo;</a>
+  {% endif %}
+</div>
+{% endblock %}

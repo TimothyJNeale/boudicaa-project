@@ -1,0 +1,197 @@
+{% extends 'public_base.html' %}
+{% load static %}
+
+{% block title %}Boudicaa — Personal Productivity{% endblock %}
+
+{% block content %}
+
+<!-- Hero Section -->
+<section id="hero" class="hero section">
+  <div class="hero-bg">
+    <img src="{% static 'gtd/img/hero-bg-light.webp' %}" alt="">
+  </div>
+  <div class="container text-center">
+    <div class="d-flex flex-column justify-content-center align-items-center">
+      <h1 data-aos="fade-up">Welcome to <span>Boudicaa</span></h1>
+      <p data-aos="fade-up" data-aos-delay="100">Capture, organise, and act on everything that matters to you<br></p>
+      <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
+        {% if user.is_authenticated %}
+          <a href="{% url 'today' %}" class="btn-get-started">Go to Dashboard</a>
+        {% else %}
+          <a href="{% url 'signupuser' %}" class="btn-get-started">Get Started</a>
+        {% endif %}
+      </div>
+      <img src="{% static 'gtd/img/hero-services-img.webp' %}" class="img-fluid hero-img" alt="" data-aos="zoom-out" data-aos-delay="300">
+    </div>
+  </div>
+</section><!-- /Hero Section -->
+
+<!-- Featured Services Section -->
+<section id="featured-services" class="featured-services section light-background">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="100">
+        <div class="service-item d-flex">
+          <div class="icon flex-shrink-0"><i class="bi bi-inbox"></i></div>
+          <div>
+            <h4 class="title"><a href="#about" class="stretched-link">Capture Everything</a></h4>
+            <p class="description">Collect all your tasks, ideas, and commitments in one trusted system</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="200">
+        <div class="service-item d-flex">
+          <div class="icon flex-shrink-0"><i class="bi bi-list-check"></i></div>
+          <div>
+            <h4 class="title"><a href="#about" class="stretched-link">Organize Projects</a></h4>
+            <p class="description">Break down complex projects into actionable next steps</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-xl-4 col-lg-6" data-aos="fade-up" data-aos-delay="300">
+        <div class="service-item d-flex">
+          <div class="icon flex-shrink-0"><i class="bi bi-clock-history"></i></div>
+          <div>
+            <h4 class="title"><a href="#about" class="stretched-link">Track Time</a></h4>
+            <p class="description">Monitor progress and understand where your time goes</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /Featured Services Section -->
+
+<!-- About Section -->
+<section id="about" class="about section">
+  <div class="container">
+    <div class="row gy-4">
+      <div class="col-lg-6 content" data-aos="fade-up" data-aos-delay="100">
+        <p class="who-we-are">Why Boudicaa?</p>
+        <h3>Your Personal Productivity System</h3>
+        <p class="fst-italic">
+          Boudicaa is built around a simple principle: your mind is at its best
+          when it's focused on doing, not remembering. Get everything into a
+          trusted system and focus on the right work at the right time.
+        </p>
+        <ul>
+          <li><i class="bi bi-check-circle"></i> <span>Capture all your tasks and ideas in one place</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Clarify what each item means and decide the next action</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Organise by context, priority, and time available</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Review your commitments regularly to stay on track</span></li>
+          <li><i class="bi bi-check-circle"></i> <span>Act with confidence knowing nothing is slipping through the cracks</span></li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6 about-images" data-aos="fade-up" data-aos-delay="200">
+        <div class="row gy-4">
+          <div class="col-lg-6">
+            <img src="{% static 'gtd/img/about-company-1.jpg' %}" class="img-fluid" alt="Productivity Workflow">
+          </div>
+          <div class="col-lg-6">
+            <div class="row gy-4">
+              <div class="col-lg-12">
+                <img src="{% static 'gtd/img/about-company-2.jpg' %}" class="img-fluid" alt="Task Management">
+              </div>
+              <div class="col-lg-12">
+                <img src="{% static 'gtd/img/about-company-3.jpg' %}" class="img-fluid" alt="Productivity">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /About Section -->
+
+<!-- Call To Action Section -->
+<section id="call-to-action" class="call-to-action section light-background">
+  <div class="container">
+    <div class="row justify-content-center" data-aos="zoom-in" data-aos-delay="100">
+      <div class="col-xl-10">
+        <div class="text-center">
+          <h3>Ready to Take Control?</h3>
+          <p>Start organising your tasks and projects today. Join others who have found a clearer, calmer way to work.</p>
+          {% if user.is_authenticated %}
+            <a class="btn-get-started" href="{% url 'today' %}">Go to Dashboard</a>
+          {% else %}
+            <a class="btn-get-started" href="{% url 'signupuser' %}">Get Started Free</a>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /Call To Action Section -->
+
+<!-- Features Section -->
+<section id="features" class="features section">
+  <!-- Section Title -->
+  <div class="container section-title" data-aos="fade-up">
+    <h2>Features</h2>
+    <p>Everything you need to stay on top of your work and commitments</p>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-lg-5 d-flex align-items-center">
+        <ul class="nav nav-tabs" data-aos="fade-up" data-aos-delay="100">
+          <li class="nav-item">
+            <a class="nav-link active show" data-bs-toggle="tab" data-bs-target="#features-tab-1">
+              <i class="bi bi-kanban"></i>
+              <div>
+                <h4 class="d-none d-lg-block">Project &amp; Action Management</h4>
+                <p>
+                  Organize your work into projects and break them down into concrete actions.
+                  Track progress and maintain clear next steps for every commitment.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-2">
+              <i class="bi bi-calendar-check"></i>
+              <div>
+                <h4 class="d-none d-lg-block">Context-Based Organization</h4>
+                <p>
+                  Group actions by context (location, tools, people) so you can see
+                  what's actionable based on where you are and what resources are available.
+                </p>
+              </div>
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" data-bs-toggle="tab" data-bs-target="#features-tab-3">
+              <i class="bi bi-graph-up"></i>
+              <div>
+                <h4 class="d-none d-lg-block">Time Tracking &amp; Reports</h4>
+                <p>
+                  Track time spent on actions and generate reports to understand your
+                  productivity patterns and make informed decisions about time allocation.
+                </p>
+              </div>
+            </a>
+          </li>
+        </ul>
+      </div>
+
+      <div class="col-lg-6">
+        <div class="tab-content" data-aos="fade-up" data-aos-delay="200">
+          <div class="tab-pane fade active show" id="features-tab-1">
+            <img src="{% static 'gtd/img/tabs-1.jpg' %}" alt="Project Management" class="img-fluid">
+          </div>
+
+          <div class="tab-pane fade" id="features-tab-2">
+            <img src="{% static 'gtd/img/tabs-2.jpg' %}" alt="Context Organization" class="img-fluid">
+          </div>
+
+          <div class="tab-pane fade" id="features-tab-3">
+            <img src="{% static 'gtd/img/tabs-3.jpg' %}" alt="Time Tracking" class="img-fluid">
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section><!-- /Features Section -->
+
+{% endblock %}

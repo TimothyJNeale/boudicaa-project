@@ -1,0 +1,53 @@
+{% extends "gtd/base.html" %}
+{% block title %}Processed Items — Boudicaa{% endblock %}
+
+{% block content %}
+<div class="page-header d-flex flex-wrap align-items-center justify-content-between gap-3">
+  <div>
+    <h1 class="page-title">Processed Items</h1>
+  </div>
+  <a href="{% url 'inbox_list' %}" class="btn btn-outline-secondary btn-sm">
+    <i class="bi bi-arrow-left me-1"></i> Back to Inbox
+  </a>
+</div>
+
+{% if object_list %}
+<div class="card">
+  <div class="card-body p-0">
+    <table class="table table-hover mb-0">
+      <thead>
+        <tr>
+          <th>Item</th>
+          <th>Outcome</th>
+          <th>Processed</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for item in object_list %}
+        <tr>
+          <td>
+            <a href="{% url 'inbox_processed_detail' item.pk %}">{{ item.item|truncatewords:20 }}</a>
+          </td>
+          <td>
+            {% if item.processing_note %}
+            <span class="badge bg-secondary">{{ item.processing_note }}</span>
+            {% else %}
+            <span class="text-muted">—</span>
+            {% endif %}
+          </td>
+          <td><small class="text-muted">{{ item.processed_at|timesince }} ago</small></td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+</div>
+{% include "gtd/_pagination.html" %}
+{% else %}
+<div class="card">
+  <div class="card-body text-center py-5">
+    <p class="text-muted">No processed items yet.</p>
+  </div>
+</div>
+{% endif %}
+{% endblock %}

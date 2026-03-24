@@ -1,0 +1,15 @@
+<!-- Single day section for Today view -->
+<div class="card mb-3">
+  <div class="card-header">
+    <h6 class="mb-0">{{ day.date|date:"l, j F" }}</h6>
+  </div>
+  <div class="card-body p-0">
+    {% for action in day.actions %}
+    {% include "gtd/partials/action_row.html" %}
+    {% empty %}
+    <div class="text-center py-3 text-muted">
+      <small>Nothing scheduled</small>
+    </div>
+    {% endfor %}
+  </div>
+</div>

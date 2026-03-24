@@ -1,0 +1,15 @@
+<!-- SDS Appendix A — Reusable side panel container (EasyAdmin floating card pattern) -->
+<div id="side-panel" class="side-panel" x-data="{ open: false }"
+     @open-panel.window="open = true" @close-panel.window="open = false"
+     :class="{ 'show': open }">
+  <div class="side-panel-overlay" @click="open = false"></div>
+  <div class="side-panel-content card shadow-lg">
+    <div class="card-header d-flex justify-content-between align-items-center">
+      <h5 class="card-title mb-0">{% block panel_title %}Details{% endblock %}</h5>
+      <button type="button" class="btn-close" @click="open = false"></button>
+    </div>
+    <div class="card-body" id="side-panel-body">
+      {% block panel_body %}{% endblock %}
+    </div>
+  </div>
+</div>

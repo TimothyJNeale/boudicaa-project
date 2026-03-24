@@ -1,0 +1,70 @@
+{% extends "gtd/base.html" %}
+{% block title %}Profile — Boudicaa{% endblock %}
+
+{% block content %}
+<div class="page-header">
+  <h1 class="page-title">Profile</h1>
+</div>
+
+<div class="row g-3">
+  <!-- User Details -->
+  <div class="col-md-8">
+    <div class="card">
+      <div class="card-header"><h6 class="mb-0">Account Details</h6></div>
+      <div class="card-body">
+        <form method="post">
+          {% csrf_token %}
+          {% for field in form %}
+          <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}<div class="invalid-feedback d-block">{{ field.errors.0 }}</div>{% endif %}
+          </div>
+          {% endfor %}
+          <button type="submit" class="btn btn-primary">Save Changes</button>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- Sidebar Info -->
+  <div class="col-md-4">
+    <!-- API Key -->
+    {% if profile %}
+    <div class="card mb-3">
+      <div class="card-header"><h6 class="mb-0">API Key</h6></div>
+      <div class="card-body">
+        {% if profile.api_key %}
+        <code class="d-block mb-2" style="word-break: break-all;">{{ profile.api_key }}</code>
+        {% else %}
+        <p class="text-muted">No API key generated.</p>
+        {% endif %}
+        <form method="post" action="{% url 'api_regenerate_key' %}">
+          {% csrf_token %}
+          <button type="submit" class="btn btn-sm btn-outline-primary">
+            {% if profile.api_key %}Regenerate{% else %}Generate{% endif %} API Key
+          </button>
+        </form>
+      </div>
+    </div>
+
+    <!-- Preferences -->
+    <div class="card mb-3">
+      <div class="card-header"><h6 class="mb-0">Preferences</h6></div>
+      <div class="card-body">
+        <p class="mb-1"><strong>Project View:</strong> {{ profile.get_preferred_project_view_display }}</p>
+        <p class="mb-0"><strong>Last Review:</strong> {{ profile.last_review_date|default:"Never" }}</p>
+      </div>
+    </div>
+    {% endif %}
+
+    <!-- Danger Zone -->
+    <div class="card border-danger">
+      <div class="card-header bg-danger text-white"><h6 class="mb-0">Danger Zone</h6></div>
+      <div class="card-body">
+        <a href="{% url 'account_delete' %}" class="btn btn-outline-danger btn-sm">Delete Account</a>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

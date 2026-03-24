@@ -1,0 +1,28 @@
+{% extends "gtd/base.html" %}
+{% block title %}Monthly Report (by Project) — Boudicaa{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.8/dist/chart.umd.min.js"></script>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+  const data = {{ chart_data|safe }};
+  if (data.labels.length > 0) {
+    new Chart(document.getElementById('monthlyChart'), {
+      type: 'doughnut',
+      data: { labels: data.labels, datasets: [{ data: data.data, backgroundColor: data.colors }] },
+      options: { responsive: true, plugins: { legend: { position: 'bottom' }}}
+    });
+  }
+});
+</script>
+{% endblock %}
+
+{% block content %}
+{% include "gtd/time/reports/_navigation.html" %}
+<div class="page-header">
+  <h1 class="page-title">Monthly by Project</h1>
+</div>
+<div class="card">
+  <div class="card-body"><canvas id="monthlyChart"></canvas></div>
+</div>
+{% endblock %}

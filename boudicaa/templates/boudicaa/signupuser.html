@@ -1,0 +1,55 @@
+{% extends 'public_base.html' %}
+
+{% block title %}Sign Up — Boudicaa{% endblock %}
+{% block body_class %}index-page{% endblock %}
+
+{% block nav_items %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block nav_actions %}
+<a class="btn-getstarted" href="{% url 'loginuser' %}">Sign In</a>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4">
+            <h3 class="text-center mb-4">Create Account</h3>
+
+            {% if error %}
+            <div class="alert alert-danger">{{ error }}</div>
+            {% endif %}
+
+            <form method="post">
+              {% csrf_token %}
+              {% if form %}
+              {% for field in form %}
+              <div class="mb-3">
+                <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+                {{ field }}
+                {% if field.errors %}
+                <div class="invalid-feedback d-block">{{ field.errors.0 }}</div>
+                {% endif %}
+                {% if field.help_text %}
+                <div class="form-text">{{ field.help_text }}</div>
+                {% endif %}
+              </div>
+              {% endfor %}
+              {% endif %}
+              <button type="submit" class="btn btn-primary w-100">Create Account</button>
+            </form>
+
+            <div class="text-center mt-3">
+              <small>Already have an account? <a href="{% url 'loginuser' %}">Sign In</a></small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

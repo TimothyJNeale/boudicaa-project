@@ -1,0 +1,29 @@
+{% extends 'public_base.html' %}
+
+{% block title %}Account Deleted — Boudicaa{% endblock %}
+
+{% block nav_items %}
+<li><a href="/">Home</a></li>
+{% endblock %}
+
+{% block nav_actions %}
+<a class="btn-getstarted" href="{% url 'signupuser' %}">Sign Up</a>
+{% endblock %}
+
+{% block content %}
+<section class="section" style="padding-top: 120px;">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-5 col-md-7">
+        <div class="card shadow-sm border-0">
+          <div class="card-body p-4 text-center">
+            <h3 class="mb-3">Account Deleted</h3>
+            <p class="text-muted">Your account and all associated data have been permanently removed.</p>
+            <a href="/" class="btn btn-primary">Return to Home</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}

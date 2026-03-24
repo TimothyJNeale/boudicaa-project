@@ -1,0 +1,16 @@
+<!-- Active timer display in header -->
+{% if active_session %}
+<div class="d-flex align-items-center gap-2">
+  <span class="badge bg-success">
+    <i class="bi bi-stopwatch me-1"></i>
+    {{ active_session.action.name|truncatewords:3 }}
+    — {{ active_session.elapsed_time_formatted }}
+  </span>
+  <button class="btn btn-sm btn-outline-danger"
+          hx-post="{% url 'stop_work_session' %}"
+          hx-target="#running-timer" hx-swap="innerHTML"
+          title="Stop Timer">
+    <i class="bi bi-stop-fill"></i>
+  </button>
+</div>
+{% endif %}
