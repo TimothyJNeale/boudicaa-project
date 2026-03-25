@@ -50,7 +50,7 @@ def logoutuser(request: HttpRequest) -> HttpResponse:
     """Logout. POST-only."""
     if request.method == 'POST':
         logout(request)
-    return redirect('loginuser')
+    return redirect(settings.LOGOUT_REDIRECT_URL)
 
 
 def verification_sent(request: HttpRequest) -> HttpResponse:

@@ -7,9 +7,10 @@ Version format: MAJOR.MINOR.PATCH
 - PATCH: Bug fixes, backwards compatible
 """
 
-__version__ = "3.0.4"
+__version__ = "3.0.5"
 
 # Version history (most recent first):
+# 3.0.5 (2026-03-25) - MySQL strict mode, logout redirect fix, admin link for staff users
 # 3.0.4 (2026-03-25) - Public site polish: protected mode UI, logout redirect, Bluesky link
 # 3.0.3 (2026-03-25) - Richer seed data: v2-style contexts, domains, and areas as system defaults
 # 3.0.2 (2026-03-24) - Public site: QuickStart Pro template for all public pages, trademark-safe copy, v2-style footer

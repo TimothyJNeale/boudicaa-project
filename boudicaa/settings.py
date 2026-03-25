@@ -78,7 +78,10 @@ elif _db_engine == 'mysql':
             'PASSWORD': os.getenv('DB_PASSWORD'),
             'HOST': os.getenv('DB_HOST', 'localhost'),
             'PORT': os.getenv('DB_PORT', '3306'),
-            'OPTIONS': {'charset': 'utf8mb4'},
+            'OPTIONS': {
+                'charset': 'utf8mb4',
+                'sql_mode': 'STRICT_ALL_TABLES',
+            },
         }
     }
 elif _db_engine == 'postgresql':

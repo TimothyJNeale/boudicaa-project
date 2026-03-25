@@ -76,6 +76,14 @@
               {% if review_nudge %}<span class="badge bg-warning text-dark ms-1">Due</span>{% endif %}
             </a>
           </li>
+          {% if request.user.is_staff %}
+          <li><hr class="dropdown-divider"></li>
+          <li>
+            <a class="dropdown-item" href="/admin/">
+              <i class="bi bi-gear"></i> Admin
+            </a>
+          </li>
+          {% endif %}
           <li><hr class="dropdown-divider"></li>
           <li>
             <form method="post" action="{% url 'logoutuser' %}">
