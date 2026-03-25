@@ -39,7 +39,11 @@
               <button type="submit" class="btn btn-primary w-100">Sign In</button>
             </form>
 
-            <div class="text-center mt-3">
+            <div class="text-center mt-2">
+              <small><a href="{% url 'password_reset' %}">Forgot your password?</a></small>
+            </div>
+
+            <div class="text-center mt-2">
               {% if protected_mode %}
               <small class="text-muted">New registration is currently disabled</small>
               {% else %}

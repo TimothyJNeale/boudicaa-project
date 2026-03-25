@@ -18,7 +18,7 @@
       <!-- Quick Capture (Inbox) -->
       <div class="header-action" x-data="{ open: false }">
         <button @click="open = !open" class="btn btn-sm btn-outline-primary" title="Quick Capture">
-          <i class="bi bi-plus-lg"></i> Capture
+          <i class="bi bi-plus-circle"></i>
         </button>
         <div x-show="open" @click.away="open = false" x-cloak
              class="position-absolute end-0 mt-2 p-3 bg-white border rounded shadow-sm" style="width: 320px; z-index: 1050;">
@@ -45,12 +45,6 @@
         <i class="bi bi-inbox"></i>
         {% if inbox_count %}<span class="badge">{{ inbox_count }}</span>{% endif %}
       </a>
-
-      <!-- Theme Toggle -->
-      <button class="header-action theme-toggle" title="Toggle Theme">
-        <i class="bi bi-moon icon-dark"></i>
-        <i class="bi bi-sun icon-light"></i>
-      </button>
 
       <!-- User Dropdown -->
       <div class="header-action dropdown user-dropdown">
@@ -114,11 +108,6 @@
       {% if inbox_count %}<span class="badge">{{ inbox_count }}</span>{% endif %}
       <span class="mobile-menu-label">Inbox</span>
     </a>
-    <button class="mobile-menu-item theme-toggle" title="Toggle Theme">
-      <i class="bi bi-moon icon-dark"></i>
-      <i class="bi bi-sun icon-light"></i>
-      <span class="mobile-menu-label">Theme</span>
-    </button>
     <a href="{% url 'profile' %}" class="mobile-menu-item">
       <i class="bi bi-person"></i>
       <span class="mobile-menu-label">Profile</span>
