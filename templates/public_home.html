@@ -17,6 +17,8 @@
       <div class="d-flex" data-aos="fade-up" data-aos-delay="200">
         {% if user.is_authenticated %}
           <a href="{% url 'today' %}" class="btn-get-started">Go to Dashboard</a>
+        {% elif protected_mode %}
+          <a href="{% url 'loginuser' %}" class="btn-get-started">Sign In</a>
         {% else %}
           <a href="{% url 'signupuser' %}" class="btn-get-started">Get Started</a>
         {% endif %}
@@ -115,6 +117,8 @@
           <p>Start organising your tasks and projects today. Join others who have found a clearer, calmer way to work.</p>
           {% if user.is_authenticated %}
             <a class="btn-get-started" href="{% url 'today' %}">Go to Dashboard</a>
+          {% elif protected_mode %}
+            <a class="btn-get-started" href="{% url 'loginuser' %}">Sign In</a>
           {% else %}
             <a class="btn-get-started" href="{% url 'signupuser' %}">Get Started Free</a>
           {% endif %}

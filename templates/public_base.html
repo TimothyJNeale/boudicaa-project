@@ -52,7 +52,7 @@
       {% if user.is_authenticated %}
         <a class="btn-getstarted" href="{% url 'today' %}">Go to Dashboard</a>
       {% else %}
-        <a class="btn-getstarted" href="{% url 'signupuser' %}">Get Started</a>
+        <a class="btn-getstarted" href="{% url 'loginuser' %}">Sign In</a>
       {% endif %}
       {% endblock %}
 
@@ -79,7 +79,7 @@
             <p class="mt-3"><strong>Version:</strong> <span>{{ app_version }}</span></p>
           </div>
           <div class="social-links d-flex mt-4">
-            <a href="#"><i class="bi bi-github"></i></a>
+            <a href="https://bsky.app/profile/neale-tj.bsky.social" target="_blank" rel="noopener noreferrer"><i class="bi bi-cloud"></i></a>
           </div>
         </div>
 
@@ -93,8 +93,13 @@
           <ul>
             <li><a href="/">Home</a></li>
             <li><a href="{% url 'loginuser' %}">Sign In</a></li>
+            {% if not protected_mode %}
             <li><a href="{% url 'signupuser' %}">Create Account</a></li>
+            {% endif %}
           </ul>
+          {% if protected_mode %}
+          <p class="text-muted small mt-2">New registration is currently disabled.</p>
+          {% endif %}
         </div>
       </div>
     </div>

@@ -1,6 +1,7 @@
 # SDS 4.2 — Global GTD context
 from datetime import date
 
+from django.conf import settings
 from django.http import HttpRequest
 
 from gtd.version import __version__ as app_version
@@ -10,6 +11,7 @@ def gtd_context(request: HttpRequest) -> dict:
     """Add global GTD context to all templates."""
     context = {
         'app_version': app_version,
+        'protected_mode': getattr(settings, 'PROTECTED_MODE', False),
     }
 
     if not request.user.is_authenticated:

@@ -7,7 +7,9 @@
 {% endblock %}
 
 {% block nav_actions %}
+{% if not protected_mode %}
 <a class="btn-getstarted" href="{% url 'signupuser' %}">Sign Up</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}

@@ -138,7 +138,7 @@ SPECTACULAR_SETTINGS = {
 # Boudicaa-specific settings
 PROTECTED_MODE = os.getenv('PROTECTED_MODE', 'False').lower() == 'true'
 LOGIN_REDIRECT_URL = '/gtd/today/'
-LOGOUT_REDIRECT_URL = '/login/'
+LOGOUT_REDIRECT_URL = '/'
 LOGIN_URL = '/login/'
 
 # Pagination

@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block nav_actions %}
+{% if not protected_mode %}
 <a class="btn-getstarted" href="{% url 'signupuser' %}">Sign Up</a>
+{% endif %}
 {% endblock %}
 
 {% block content %}
@@ -38,7 +40,11 @@
             </form>
 
             <div class="text-center mt-3">
+              {% if protected_mode %}
+              <small class="text-muted">New registration is currently disabled</small>
+              {% else %}
               <small>Don't have an account? <a href="{% url 'signupuser' %}">Sign Up</a></small>
+              {% endif %}
             </div>
           </div>
         </div>
