@@ -64,7 +64,7 @@
         {% else %}
         <p class="text-muted">No API key generated.</p>
         {% endif %}
-        <form method="post" action="{% url 'api_regenerate_key' %}">
+        <form method="post" action="{% url 'regenerate_api_key' %}">
           {% csrf_token %}
           <button type="submit" class="btn btn-sm btn-outline-primary">
             {% if profile.api_key %}Regenerate{% else %}Generate{% endif %} API Key

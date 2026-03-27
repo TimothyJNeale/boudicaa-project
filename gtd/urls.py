@@ -65,6 +65,7 @@ from .views import (
     ContextDeleteView,
     # Profile
     UserProfileView,
+    regenerate_api_key,
     account_delete_confirm,
 )
 
@@ -151,5 +152,6 @@ urlpatterns = [
 
     # Profile — SDS 3.2
     path('profile/', UserProfileView.as_view(), name='profile'),
+    path('profile/regenerate-key/', regenerate_api_key, name='regenerate_api_key'),
     path('account/delete/', account_delete_confirm, name='account_delete'),
 ]

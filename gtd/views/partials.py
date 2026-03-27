@@ -7,6 +7,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import TemplateView
 
 from ..forms import AccountDeletionForm, UserProfileForm
+from ..models import UserProfile
 
 
 class UserProfileView(LoginRequiredMixin, TemplateView):
@@ -27,6 +28,15 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
             'form': form,
             'profile': getattr(request.user, 'userprofile', None),
         })
+
+
+@login_required
+def regenerate_api_key(request: HttpRequest) -> HttpResponse:
+    """Regenerate API key and redirect to profile. SDS 3.2."""
+    if request.method == 'POST':
+        profile = UserProfile.objects.get(user=request.user)
+        profile.generate_api_key()
+    return redirect('profile')
 
 
 @login_required
