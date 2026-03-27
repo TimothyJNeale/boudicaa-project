@@ -7,9 +7,10 @@ Version format: MAJOR.MINOR.PATCH
 - PATCH: Bug fixes, backwards compatible
 """
 
-__version__ = "3.0.9"
+__version__ = "3.0.10"
 
 # Version history (most recent first):
+# 3.0.10 (2026-03-27) - Boudicaa shield logo: favicon, app sidebar, public site header and footer
 # 3.0.9 (2026-03-27) - Project view switcher, editable preferences, snagging list for Projects mode
 # 3.0.8 (2026-03-27) - API key regeneration via web view, stays within app layout
 # 3.0.7 (2026-03-27) - Uniform form layout: explicit inputs, tooltip help text, profile page layout

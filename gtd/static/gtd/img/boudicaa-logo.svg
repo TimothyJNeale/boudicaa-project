@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400">
+  <defs>
+    <linearGradient id="shield-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#2a7a91"/>
+      <stop offset="100%" style="stop-color:#388da8"/>
+    </linearGradient>
+    <linearGradient id="tick-grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#f0c040"/>
+      <stop offset="100%" style="stop-color:#e8a820"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Shield shape — strength, protection, Boudicaa the warrior queen -->
+  <path d="M200 40 L340 100 L340 220 C340 300 270 360 200 380 C130 360 60 300 60 220 L60 100 Z"
+        fill="url(#shield-grad)" />
+
+  <!-- Inner shield highlight -->
+  <path d="M200 65 L320 115 L320 215 C320 285 258 338 200 355 C142 338 80 285 80 215 L80 115 Z"
+        fill="none" stroke="rgba(255,255,255,0.15)" stroke-width="2" />
+
+  <!-- Checkmark — getting things done -->
+  <polyline points="140,210 180,260 270,155"
+            fill="none" stroke="url(#tick-grad)" stroke-width="28"
+            stroke-linecap="round" stroke-linejoin="round" />
+</svg>

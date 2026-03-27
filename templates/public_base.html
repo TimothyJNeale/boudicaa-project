@@ -9,8 +9,8 @@
   <meta name="description" content="{% block meta_description %}Boudicaa — AI-augmented personal productivity. Capture, organise, and act on everything that matters.{% endblock %}">
 
   <!-- Favicons -->
-  <link href="{% static 'gtd/img/favicon.png' %}" rel="icon">
-  <link href="{% static 'gtd/img/apple-touch-icon.png' %}" rel="apple-touch-icon">
+  <link href="{% static 'gtd/img/boudicaa-logo.svg' %}" rel="icon" type="image/svg+xml">
+  <link href="{% static 'gtd/img/boudicaa-logo.svg' %}" rel="apple-touch-icon">
 
   <!-- Fonts (CDN) -->
   <link href="https://fonts.googleapis.com" rel="preconnect">
@@ -34,6 +34,7 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
       <a href="/" class="logo d-flex align-items-center me-auto">
+        <img src="{% static 'gtd/img/boudicaa-logo.svg' %}" alt="" width="36" height="36" class="me-2">
         <h1 class="sitename">Boudicaa</h1>
       </a>
 
@@ -72,6 +73,7 @@
       <div class="row gy-4">
         <div class="col-lg-5 col-md-6 footer-about">
           <a href="/" class="logo d-flex align-items-center">
+            <img src="{% static 'gtd/img/boudicaa-logo.svg' %}" alt="" width="30" height="30" class="me-2">
             <span class="sitename">Boudicaa</span>
           </a>
           <div class="footer-contact pt-3">
