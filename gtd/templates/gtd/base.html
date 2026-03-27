@@ -73,6 +73,9 @@
   <!-- Alpine.js -->
   <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.14.8/dist/cdn.min.js"></script>
 
+  <!-- Bootstrap tooltip init -->
+  <script>document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));</script>
+
   {% block extra_js %}{% endblock %}
 </body>
 

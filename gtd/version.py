@@ -7,9 +7,10 @@ Version format: MAJOR.MINOR.PATCH
 - PATCH: Bug fixes, backwards compatible
 """
 
-__version__ = "3.0.6"
+__version__ = "3.0.7"
 
 # Version history (most recent first):
+# 3.0.7 (2026-03-27) - Uniform form layout: explicit inputs, tooltip help text, profile page layout
 # 3.0.6 (2026-03-25) - Password change/reset in app UI, profile link, dark mode toggle removed
 # 3.0.5 (2026-03-25) - MySQL strict mode, logout redirect fix, admin link for staff users
 # 3.0.4 (2026-03-25) - Public site polish: protected mode UI, logout redirect, Bluesky link

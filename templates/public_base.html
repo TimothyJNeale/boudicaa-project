@@ -126,6 +126,9 @@
   <!-- QuickStart Theme JS -->
   <script src="{% static 'gtd/js/quickstart.js' %}"></script>
 
+  <!-- Bootstrap tooltip init -->
+  <script>document.querySelectorAll('[data-bs-toggle="tooltip"]').forEach(el => new bootstrap.Tooltip(el));</script>
+
   {% block extra_js %}{% endblock %}
 </body>
 
