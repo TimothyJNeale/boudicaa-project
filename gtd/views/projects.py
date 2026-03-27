@@ -27,10 +27,16 @@ STATUS_GROUPS = {
 
 
 class ProjectListView(LoginRequiredMixin, TemplateView):
-    def get_template_names(self):
+    def _get_view_mode(self):
+        """Return 'board' or 'list' — query param overrides saved preference."""
+        view_param = self.request.GET.get('view')
+        if view_param in ('board', 'list'):
+            return view_param
         profile = getattr(self.request.user, 'userprofile', None)
-        pref = profile.preferred_project_view if profile else 'board'
-        if pref == 'list':
+        return profile.preferred_project_view if profile else 'board'
+
+    def get_template_names(self):
+        if self._get_view_mode() == 'list':
             return ['gtd/projects/list.html']
         return ['gtd/projects/board.html']
 
@@ -57,6 +63,7 @@ class ProjectListView(LoginRequiredMixin, TemplateView):
             'columns': columns,
             'projects': projects,
             'show_archived': show_archived,
+            'view_mode': self._get_view_mode(),
         })
         return context
 

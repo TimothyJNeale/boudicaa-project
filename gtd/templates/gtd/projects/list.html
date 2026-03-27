@@ -7,6 +7,14 @@
     <h1 class="page-title">Projects</h1>
   </div>
   <div class="d-flex gap-2">
+    <div class="btn-group btn-group-sm" role="group" aria-label="View mode">
+      <a href="?view=board" class="btn btn-outline-secondary" title="Board view">
+        <i class="bi bi-kanban"></i>
+      </a>
+      <a href="?view=list" class="btn btn-outline-secondary active" title="List view">
+        <i class="bi bi-list-ul"></i>
+      </a>
+    </div>
     <a href="{% url 'project_create' %}" class="btn btn-primary btn-sm">
       <i class="bi bi-plus-lg me-1"></i> New Project
     </a>

@@ -31,6 +31,18 @@ class UserProfileView(LoginRequiredMixin, TemplateView):
 
 
 @login_required
+def update_preferences(request: HttpRequest) -> HttpResponse:
+    """Update user preferences and redirect to profile. SDS 3.2."""
+    if request.method == 'POST':
+        profile = UserProfile.objects.get(user=request.user)
+        pref = request.POST.get('preferred_project_view')
+        if pref in ('board', 'list'):
+            profile.preferred_project_view = pref
+            profile.save(update_fields=['preferred_project_view'])
+    return redirect('profile')
+
+
+@login_required
 def regenerate_api_key(request: HttpRequest) -> HttpResponse:
     """Regenerate API key and redirect to profile. SDS 3.2."""
     if request.method == 'POST':

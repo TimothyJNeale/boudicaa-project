@@ -7,13 +7,21 @@
     <h1 class="page-title">Projects</h1>
   </div>
   <div class="d-flex gap-2">
+    <div class="btn-group btn-group-sm" role="group" aria-label="View mode">
+      <a href="?view=board{% if show_archived %}&archived=1{% endif %}" class="btn btn-outline-secondary active" title="Board view">
+        <i class="bi bi-kanban"></i>
+      </a>
+      <a href="?view=list{% if show_archived %}&archived=1{% endif %}" class="btn btn-outline-secondary" title="List view">
+        <i class="bi bi-list-ul"></i>
+      </a>
+    </div>
     <a href="{% url 'project_create' %}" class="btn btn-primary btn-sm">
       <i class="bi bi-plus-lg me-1"></i> New Project
     </a>
     {% if not show_archived %}
-    <a href="?archived=1" class="btn btn-outline-secondary btn-sm">Show Archived</a>
+    <a href="?view=board&archived=1" class="btn btn-outline-secondary btn-sm">Show Archived</a>
     {% else %}
-    <a href="{% url 'project_list' %}" class="btn btn-outline-secondary btn-sm">Hide Archived</a>
+    <a href="?view=board" class="btn btn-outline-secondary btn-sm">Hide Archived</a>
     {% endif %}
   </div>
 </div>

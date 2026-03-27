@@ -66,6 +66,7 @@ from .config import (  # noqa: F401
 )
 from .partials import (  # noqa: F401
     UserProfileView,
+    update_preferences,
     regenerate_api_key,
     account_delete_confirm,
 )

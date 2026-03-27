@@ -77,8 +77,19 @@
     <div class="card mb-3">
       <div class="card-header"><h6 class="mb-0">Preferences</h6></div>
       <div class="card-body">
-        <p class="mb-1"><strong>Project View:</strong> {{ profile.get_preferred_project_view_display }}</p>
-        <p class="mb-0"><strong>Last Review:</strong> {{ profile.last_review_date|default:"Never" }}</p>
+        <form method="post" action="{% url 'update_preferences' %}">
+          {% csrf_token %}
+          <div class="mb-2">
+            <label for="id_preferred_project_view" class="form-label small mb-1"><strong>Project View</strong></label>
+            <select name="preferred_project_view" id="id_preferred_project_view" class="form-select form-select-sm">
+              <option value="board"{% if profile.preferred_project_view == 'board' %} selected{% endif %}>Board</option>
+              <option value="list"{% if profile.preferred_project_view == 'list' %} selected{% endif %}>List</option>
+            </select>
+          </div>
+          <button type="submit" class="btn btn-sm btn-outline-primary">Save</button>
+        </form>
+        <hr class="my-2">
+        <p class="mb-0 small"><strong>Last Review:</strong> {{ profile.last_review_date|default:"Never" }}</p>
       </div>
     </div>
     {% endif %}
